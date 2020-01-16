@@ -1,9 +1,9 @@
 <?php
 
-namespace Jenky\LaravelPlupload\Facades;
+namespace Fsuuaas\LaravelPlupload\Facades;
 
 use Illuminate\Support\Facades\Facade;
-use Jenky\LaravelPlupload\Contracts\Plupload as PluploadContract;
+use Fsuuaas\LaravelPlupload\Contracts\Plupload as PluploadContract;
 
 class Plupload extends Facade
 {
