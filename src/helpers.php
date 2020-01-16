@@ -1,12 +1,12 @@
 <?php
 
-use Jenky\LaravelPlupload\Contracts\Plupload;
+use Fsuuaas\LaravelPlupload\Contracts\Plupload;
 
 if (! function_exists('plupload')) {
     /**
      * @param  null|string $id
      * @param  null|string $url
-     * @return \Jenky\LaravelPlupload\Contracts\Plupload|\Jenky\LaravelPlupload\Html
+     * @return \Fsuuaas\LaravelPlupload\Contracts\Plupload|\Fsuuaas\LaravelPlupload\Html
      */
     function plupload($id = null, $url = null)
     {
