@@ -1,10 +1,10 @@
 <?php
 
-namespace Jenky\LaravelPlupload;
+namespace Fsuuaas\LaravelPlupload;
 
 use Closure;
 use Illuminate\Contracts\Foundation\Application;
-use Jenky\LaravelPlupload\Contracts\Plupload as Contract;
+use Fsuuaas\LaravelPlupload\Contracts\Plupload as Contract;
 
 class Plupload implements Contract
 {
