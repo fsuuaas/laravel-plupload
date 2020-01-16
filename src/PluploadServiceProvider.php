@@ -1,9 +1,9 @@
 <?php
 
-namespace Jenky\LaravelPlupload;
+namespace Fsuuaas\LaravelPlupload;
 
 use Illuminate\Support\ServiceProvider;
-use Jenky\LaravelPlupload\Contracts\Plupload as PluploadContract;
+use Fsuuaas\LaravelPlupload\Contracts\Plupload as PluploadContract;
 
 class PluploadServiceProvider extends ServiceProvider
 {
