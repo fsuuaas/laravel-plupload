@@ -1,6 +1,6 @@
 <?php
 
-namespace Jenky\LaravelPlupload\Contracts;
+namespace Fsuuaas\LaravelPlupload\Contracts;
 
 use Closure;
 
