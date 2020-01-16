@@ -97,28 +97,30 @@ class File
      * @param  \Closure $closure
      * @return mixed
      */
-    public function chunks($name, Closure $closure)
+	    public function chunks($name, Closure $closure)
     {
-        if (! $this->request->hasFile($name)) {
-            return;
+        $result = false;
+
+        if ($this->request->hasFile($name)) {
+            $file = $this->request->file($name);
+
+            $chunk = (int) $this->request->get('chunk', false);
+            $chunks = (int) $this->request->get('chunks', false);
+            $originalName = $this->request->get('name');
+
+            $filePath = $this->getChunkPath().'/'.$originalName.'.part';
+
+            $this->removeOldData($filePath);
+            $this->appendData($filePath, $file);
+
+            if ($chunk == $chunks - 1) {
+                $file = new UploadedFile($filePath, $originalName, 'blob', is_array($filePath) && count($filePath), UPLOAD_ERR_OK, true);
+                $result = $closure($file);
+                @unlink($filePath);
+            }
         }
 
-        $file = $this->request->file($name);
-        $chunk = (int) $this->request->input('chunk', false);
-        $chunks = (int) $this->request->input('chunks', false);
-        $originalName = $this->request->input('name');
-
-        $filePath = $this->getChunkPath().'/'.$originalName.'.part';
-
-        $this->removeOldData($filePath);
-        $this->appendData($filePath, $file);
-
-        if ($chunk == $chunks - 1) {
-            $file = new UploadedFile($filePath, $originalName, 'blob', UPLOAD_ERR_OK, true);
-            @unlink($filePath);
-
-            return $closure($file);
-        }
+        return $result;
     }
 
     /**
