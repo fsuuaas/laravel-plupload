@@ -12,7 +12,7 @@ This package uses some parts of https://github.com/jildertmiedema/laravel-pluplo
 Require this package with composer:
 
 ```
-composer require jenky/laravel-plupload
+composer require fsuuaas/laravel-plupload
 ```
 
 Laravel 5.5+ uses Package Auto-Discovery, so doesn't require you to manually add the ServiceProvider.
@@ -22,13 +22,13 @@ Laravel 5.5+ uses Package Auto-Discovery, so doesn't require you to manually add
 Add the ServiceProvider to the providers array in `config/app.php`
 
 ```php
-Jenky\LaravelPlupload\PluploadServiceProvider::class,
+Fsuuaas\LaravelPlupload\PluploadServiceProvider::class,
 ```
 
 and add this to your facades in `config/app.php`:
 
 ```php
-'Plupload' => Jenky\LaravelPlupload\Facades\Plupload::class,
+'Plupload' => Fsuuaas\LaravelPlupload\Facades\Plupload::class,
 ```
 
 Copy the package config to your local config with the publish command:
