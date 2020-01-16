@@ -1,5 +1,5 @@
 {
-    "name": "jenky/laravel-plupload",
+    "name": "fsuuaas/laravel-plupload",
     "description": "Plupload package for Laravel 5",
     "keywords": [
         "laravel",
@@ -19,7 +19,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Jenky\\LaravelPlupload\\": "src/"
+            "Fsuuaas\\LaravelPlupload\\": "src/"
         },
         "files": [
             "src/helpers.php"
@@ -32,10 +32,10 @@
         },
         "laravel": {
             "providers": [
-                "Jenky\\LaravelPlupload\\PluploadServiceProvider"
+                "Fsuuaas\\LaravelPlupload\\PluploadServiceProvider"
             ],
             "aliases": {
-                "Plupload": "Jenky\\LaravelPlupload\\Facades\\Plupload"
+                "Plupload": "Fsuuaas\\LaravelPlupload\\Facades\\Plupload"
             }
         }
     },
