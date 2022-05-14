@@ -38,7 +38,7 @@ php artisan vendor:publish
 ```
 or
 ```
-php artisan vendor:publish --provider="Jenky\LaravelPlupload\PluploadServiceProvider"
+php artisan vendor:publish --provider="Fsuuaas\LaravelPlupload\PluploadServiceProvider"
 ```
 
 
