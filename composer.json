@@ -1,6 +1,6 @@
 {
     "name": "fsuuaas/laravel-plupload",
-    "description": "Plupload package for Laravel 9",
+    "description": "Plupload package for Laravel 5",
     "keywords": [
         "laravel",
         "plupload"
@@ -8,8 +8,8 @@
     "license": "MIT",
     "authors": [
         {
-            "name": "Sharif Uddin Ahamed",
-            "email": "fsuuaas@gmail.com"
+            "name": "Linh Tran",
+            "email": "jenky.w0w@gmail.com"
         }
     ],
     "require": {

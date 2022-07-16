@@ -7,31 +7,31 @@ class Html
     /**
      * @var array
      */
-    protected array $data = [];
+    protected $data = [];
 
     /**
      * @var string
      */
-    protected string $id;
+    protected $id;
 
     /**
      * @var bool
      */
-    protected bool $autoStart = false;
+    protected $autoStart = false;
 
     /**
      * @var array
      */
-    protected mixed $options = [];
+    protected $options = [];
 
     /**
      * Class constructor.
      *
-     * @param string $id
-     * @param string $url
+     * @param  string $id
+     * @param  string $url
      * @return void
      */
-    public function __construct(string $id, string $url)
+    public function __construct($id, $url)
     {
         $this->id = $id;
         $this->options = config('plupload.global', []);
@@ -42,9 +42,8 @@ class Html
      * Initialize the options.
      *
      * @return void
-     * @throws Exception
      */
-    protected function init(): void
+    protected function init()
     {
         if (empty($this->options['url'])) {
             throw new Exception('Missing URL option.');
@@ -65,10 +64,10 @@ class Html
     /**
      * Set uploader auto start.
      *
-     * @param bool $bool
-     * @return Html
+     * @param  bool $bool
+     * @return void
      */
-    public function setAutoStart(bool $bool): Html
+    public function setAutoStart($bool)
     {
         $this->autoStart = (bool) $bool;
 
@@ -82,7 +81,7 @@ class Html
      * @param  array $options
      * @return $this
      */
-    public function setOptions(array $options): static
+    public function setOptions(array $options)
     {
         $this->options = array_merge($this->options, array_except($options, ['url']));
 
@@ -93,9 +92,9 @@ class Html
      * Set uploader custom params.
      *
      * @param  array $params
-     * @return Html
+     * @return void
      */
-    public function setCustomParams(array $params): Html
+    public function setCustomParams(array $params)
     {
         $this->data['params'] = $params;
 
@@ -105,12 +104,11 @@ class Html
     /**
      * Render the upload handler buttons.
      *
-     * @param string $view
-     * @param array $data
+     * @param  string $view
+     * @param  array $data
      * @return \Illuminate\View\View
-     * @throws Exception
      */
-    public function render(string $view = 'plupload::uploader', array $data = []): \Illuminate\View\View
+    public function render($view = 'plupload::uploader', array $data = [])
     {
         $this->init();
 
@@ -121,7 +119,6 @@ class Html
      * Get the string contents of the view.
      *
      * @return string
-     * @throws Exception
      */
     public function __toString()
     {

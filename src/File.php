@@ -12,23 +12,23 @@ class File
     /**
      * @var Illuminate\Http\Request
      */
-    protected Illuminate\Http\Request $request;
+    protected $request;
 
     /**
      * @var Illuminate\Filesystem\Filesystem
      */
-    protected Illuminate\Filesystem\Filesystem $storage;
+    protected $storage;
 
     /**
      * @var int
      */
-    private int $maxFileAge = 600; // 600 seconds
+    private $maxFileAge = 600; // 600 seconds
 
     /**
      * Create new class instance.
      *
-     * @param Request $request
-     * @param Filesystem $file
+     * @param  \Illuminate\Http\Request $request
+     * @param  \Illuminate\Filesystem\Filesystem $file
      * @return void
      */
     public function __construct(Request $request, Filesystem $file)
@@ -42,7 +42,7 @@ class File
      *
      * @return string
      */
-    public function getChunkPath(): string
+    public function getChunkPath()
     {
         $path = config('plupload.chunk_path');
 
@@ -56,12 +56,11 @@ class File
     /**
      * Process uploaded files.
      *
-     * @param string $name
-     * @param Closure $closure
+     * @param  string $name
+     * @param  \Closure $closure
      * @return array
-     * @throws Exception
      */
-    public function process(string $name, Closure $closure): array
+    public function process($name, Closure $closure)
     {
         $response = [];
         $response['jsonrpc'] = '2.0';
@@ -80,28 +79,26 @@ class File
     /**
      * Handle single uploaded file.
      *
-     * @param string $name
-     * @param Closure $closure
-     * @return mixed
+     * @param  string $name
+     * @param  \Closure $closure
+     * @return void
      */
-    public function single(string $name, Closure $closure): mixed
+    public function single($name, Closure $closure)
     {
         if ($this->request->hasFile($name)) {
             return $closure($this->request->file($name));
         }
-        return null;
     }
 
     /**
      * Handle single uploaded file.
      *
-     * @param string $name
-     * @param Closure $closure
+     * @param  string $name
+     * @param  \Closure $closure
      * @return mixed
-     * @throws Exception
      */
-	    public function chunks(string $name, Closure $closure): mixed
-        {
+	    public function chunks($name, Closure $closure)
+    {
         $result = false;
 
         if ($this->request->hasFile($name)) {
@@ -129,10 +126,10 @@ class File
     /**
      * Remove old chunks.
      *
-     * @param string $filePath
+     * @param  string $filePath
      * @return void
      */
-    protected function removeOldData(string $filePath): void
+    protected function removeOldData($filePath)
     {
         if ($this->storage->exists($filePath) && ($this->storage->lastModified($filePath) < time() - $this->maxFileAge)) {
             $this->storage->delete($filePath);
@@ -142,12 +139,11 @@ class File
     /**
      * Merge chunks.
      *
-     * @param string $filePathPartial
-     * @param UploadedFile $file
+     * @param  string $filePathPartial
+     * @param  \Illuminate\Http\UploadedFile $file
      * @return void
-     * @throws Exception
      */
-    protected function appendData(string $filePathPartial, UploadedFile $file): void
+    protected function appendData($filePathPartial, UploadedFile $file)
     {
         if (! $out = @fopen($filePathPartial, 'ab')) {
             throw new Exception('Failed to open output stream.', 102);
@@ -170,7 +166,7 @@ class File
      *
      * @return bool
      */
-    public function hasChunks(): bool
+    public function hasChunks()
     {
         return (bool) $this->request->input('chunks', false);
     }

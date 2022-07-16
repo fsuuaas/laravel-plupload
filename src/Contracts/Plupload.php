@@ -9,18 +9,18 @@ interface Plupload
     /**
      * Create Plupload builder.
      *
-     * @param string $id
-     * @param string $url
-     * @return \Fsuuaas\LaravelPlupload\Html
+     * @param  string $id
+     * @param  string $url
+     * @return \Jenky\LaravelPlupload\Html
      */
-    public function make(string $id, string $url): \Fsuuaas\LaravelPlupload\Html;
+    public function make($id, $url);
 
     /**
      * Plupload file upload handler.
      *
-     * @param string $name
+     * @param  string $name
      * @param  closure $closure
      * @return void
      */
-    public function file(string $name, Closure $closure): void;
+    public function file($name, Closure $closure);
 }

@@ -4,12 +4,11 @@ use Fsuuaas\LaravelPlupload\Contracts\Plupload;
 
 if (! function_exists('plupload')) {
     /**
-     * @param string|null $id
-     * @param string|null $url
+     * @param  null|string $id
+     * @param  null|string $url
      * @return \Fsuuaas\LaravelPlupload\Contracts\Plupload|\Fsuuaas\LaravelPlupload\Html
-     * @throws \Illuminate\Contracts\Container\BindingResolutionException
      */
-    function plupload(string $id = null, string $url = null): \Fsuuaas\LaravelPlupload\Html|Plupload
+    function plupload($id = null, $url = null)
     {
         $factory = app(Plupload::class);
 
