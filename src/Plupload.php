@@ -3,6 +3,7 @@
 namespace Fsuuaas\LaravelPlupload;
 
 use Closure;
+use Illuminate\Contracts\Container\BindingResolutionException;
 use Illuminate\Contracts\Foundation\Application;
 use Fsuuaas\LaravelPlupload\Contracts\Plupload as Contract;
 
@@ -11,7 +12,7 @@ class Plupload implements Contract
     /**
      * @var Illuminate\Contracts\Foundation\Application
      */
-    protected $app;
+    protected Application|Illuminate\Contracts\Foundation\Application $app;
 
     /**
      * Class constructor.
@@ -27,25 +28,27 @@ class Plupload implements Contract
     /**
      * File upload handler.
      *
-     * @param  string $name
-     * @param  closure $closure
+     * @param string $name
+     * @param closure $closure
      * @return void
+     * @throws BindingResolutionException
      */
-    public function file($name, Closure $closure)
+    public function file(string $name, Closure $closure): void
     {
         $fileHandler = $this->app->make(File::class);
 
-        return $fileHandler->process($name, $closure);
+        return;
     }
 
     /**
      * Html template handler.
      *
-     * @param  string $id
-     * @param  string $url
-     * @return \Jenky\LaravelPlupload\Html
+     * @param string $id
+     * @param string $url
+     * @return \Fsuuaas\LaravelPlupload\Html
+     * @throws BindingResolutionException
      */
-    public function make($id, $url)
+    public function make(string $id, string $url): Html
     {
         return $this->app->make(Html::class, compact('id', 'url'));
     }

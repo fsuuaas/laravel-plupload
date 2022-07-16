@@ -12,14 +12,14 @@ class PluploadServiceProvider extends ServiceProvider
      *
      * @var bool
      */
-    protected $defer = false;
+    protected bool $defer = false;
 
     /**
      * Register the service provider.
      *
      * @return void
      */
-    public function register()
+    public function register(): void
     {
         $this->registerPlupload();
     }
@@ -29,7 +29,7 @@ class PluploadServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function boot()
+    public function boot(): void
     {
         $this->setupConfig();
     }
@@ -39,7 +39,7 @@ class PluploadServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    protected function setupConfig()
+    protected function setupConfig(): void
     {
         $configPath = __DIR__.'/../config/plupload.php';
         $viewsPath = __DIR__.'/../resources/views';
@@ -63,7 +63,7 @@ class PluploadServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    protected function registerPlupload()
+    protected function registerPlupload(): void
     {
         $this->app->singleton(PluploadContract::class, function ($app) {
             return new Plupload($app);
@@ -77,7 +77,7 @@ class PluploadServiceProvider extends ServiceProvider
      *
      * @return array
      */
-    public function provides()
+    public function provides(): array
     {
         return [PluploadContract::class, 'plupload'];
     }

@@ -12,7 +12,7 @@ class Plupload extends Facade
      *
      * @return string
      */
-    protected static function getFacadeAccessor()
+    protected static function getFacadeAccessor(): string
     {
         return PluploadContract::class;
     }
