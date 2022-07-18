@@ -14,8 +14,8 @@
     ],
     "require": {
         "php": ">=8.0",
-        "illuminate/contracts": ">=9.19",
-        "illuminate/support": ">=9.19"
+        "illuminate/contracts": "^5.2|^6.0|^7.0|^8.0|^9.0",
+        "illuminate/support": "^5.2|^6.0|^7.0|^8.0|^9.0"
     },
     "autoload": {
         "psr-4": {
