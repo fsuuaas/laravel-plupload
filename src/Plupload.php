@@ -9,14 +9,16 @@ use Fsuuaas\LaravelPlupload\Contracts\Plupload as Contract;
 class Plupload implements Contract
 {
     /**
-     * @var Illuminate\Contracts\Foundation\Application
+     * The application instance.
+     *
+     * @var \Illuminate\Contracts\Foundation\Application
      */
-    protected $app;
+    protected Application $app;
 
     /**
-     * Class constructor.
+     * Create a new Plupload instance.
      *
-     * @param  \Illuminate\Contracts\Foundation\Application $app
+     * @param  \Illuminate\Contracts\Foundation\Application  $app
      * @return void
      */
     public function __construct(Application $app)
@@ -27,11 +29,11 @@ class Plupload implements Contract
     /**
      * File upload handler.
      *
-     * @param  string $name
-     * @param  closure $closure
-     * @return void
+     * @param  string  $name
+     * @param  \Closure  $closure
+     * @return mixed
      */
-    public function file($name, Closure $closure)
+    public function file(string $name, Closure $closure): mixed
     {
         $fileHandler = $this->app->make(File::class);
 
@@ -41,11 +43,11 @@ class Plupload implements Contract
     /**
      * Html template handler.
      *
-     * @param  string $id
-     * @param  string $url
-     * @return \Jenky\LaravelPlupload\Html
+     * @param  string  $id
+     * @param  string  $url
+     * @return \Fsuuaas\LaravelPlupload\Html
      */
-    public function make($id, $url)
+    public function make(string $id, string $url): Html
     {
         return $this->app->make(Html::class, compact('id', 'url'));
     }

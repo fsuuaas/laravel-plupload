@@ -8,13 +8,6 @@ use Fsuuaas\LaravelPlupload\Contracts\Plupload as PluploadContract;
 class PluploadServiceProvider extends ServiceProvider
 {
     /**
-     * Indicates if loading of the provider is deferred.
-     *
-     * @var bool
-     */
-    protected $defer = false;
-
-    /**
      * Register the service provider.
      *
      * @return void
@@ -50,12 +43,12 @@ class PluploadServiceProvider extends ServiceProvider
         $this->loadViewsFrom($viewsPath, 'plupload');
         $this->loadTranslationsFrom($translationsPath, 'plupload');
 
-        $this->publishes([$configPath => config_path('plupload.php')], 'config');
         $this->publishes([
+            $configPath => config_path('plupload.php'),
             $viewsPath => base_path('resources/views/vendor/plupload'),
             $assetsPath.'/js' => base_path('resources/assets/plupload'),
             $translationsPath => base_path('resources/lang/vendor/plupload'),
-        ]);
+        ], 'plupload');
     }
 
     /**

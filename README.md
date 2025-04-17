@@ -1,66 +1,53 @@
+# Laravel 12 Plupload
 
-# Laravel 5 Plupload
-
-[![Latest Stable Version](https://poser.pugx.org/jenky/laravel-plupload/v/stable.svg)](https://packagist.org/packages/jenky/laravel-plupload)
-[![Total Downloads](https://poser.pugx.org/jenky/laravel-plupload/d/total.svg)](https://packagist.org/packages/jenky/laravel-plupload)
-[![License](https://poser.pugx.org/jenky/laravel-plupload/license.svg)](https://packagist.org/packages/jenky/laravel-plupload)
+[![Latest Stable Version](https://poser.pugx.org/fsuuaas/laravel-plupload/v/stable.svg)](https://packagist.org/packages/fsuuaas/laravel-plupload)
+[![Total Downloads](https://poser.pugx.org/fsuuaas/laravel-plupload/d/total.svg)](https://packagist.org/packages/fsuuaas/laravel-plupload)
+[![License](https://poser.pugx.org/fsuuaas/laravel-plupload/license.svg)](https://packagist.org/packages/fsuuaas/laravel-plupload)
 
 ##### Laravel package for Plupload http://plupload.com.
 This package uses some parts of https://github.com/jildertmiedema/laravel-plupload
 
+## Requirements
+
+- PHP 8.2 or higher
+- Laravel 12.0 or higher
+
 ## Installation
+
 Require this package with composer:
 
-```
+```bash
 composer require fsuuaas/laravel-plupload
 ```
 
-Laravel 5.5+ uses Package Auto-Discovery, so doesn't require you to manually add the ServiceProvider.
+The package will automatically register its service provider and facade.
 
-**For Laravel 5.4 or older**
+Publish the package configuration:
 
-Add the ServiceProvider to the providers array in `config/app.php`
-
-```php
-Fsuuaas\LaravelPlupload\PluploadServiceProvider::class,
+```bash
+php artisan vendor:publish --tag=plupload
 ```
-
-and add this to your facades in `config/app.php`:
-
-```php
-'Plupload' => Fsuuaas\LaravelPlupload\Facades\Plupload::class,
-```
-
-Copy the package config to your local config with the publish command:
-
-```
-php artisan vendor:publish
-```
-or
-```
-php artisan vendor:publish --provider="Fsuuaas\LaravelPlupload\PluploadServiceProvider"
-```
-
 
 ## Usage
 
-
 ### Uploading files
-##### 1. Use default plupload html
+
+#### 1. Use default plupload html
 
 Use the [examples](http://www.plupload.com/examples) found on the plupload site. The [Getting Started](http://plupload.com/docs/Getting-Started) page is good place to start.
 
-
-##### 2. Plupload builder
+#### 2. Plupload builder
 
 **make($id, $url)**
 
 Create new uploader.
 * **$id**: the unique identification for the uploader.
 * **$url**: the upload url end point.
+
 ```php
 {!! Plupload::make('my_uploader_id', route('photos.store'))->render() !!}
 ```
+
 or use the helper
 ```php
 {!! plupload()->make('my_uploader_id', route('photos.store')) !!}
@@ -70,9 +57,9 @@ or use the helper
 
 **render($view = 'plupload::uploader', array $data = [])**
 
-Renders the uploader. You can customize this by passing a view name and it's data. From version `2.0`, you can omit the `render` method in the builder if you don't want to set the view or extra data.
+Renders the uploader. You can customize this by passing a view name and it's data.
 
-##### 3. Use package js file to initialize Plupload (Optional)
+#### 3. Use package js file to initialize Plupload (Optional)
 
 If you do not want to write your own js to initialize Plupload, you can use the `upload.js` file that included with the package in `resources/views/vendor/plupload/assets/js`. Make sure that you already have `jQuery` loaded on your page.
 
@@ -85,7 +72,6 @@ $(function () {
 });
 </script>
 ```
-
 
 These following methods are useable with the `upload.js` file.
 
@@ -119,9 +105,7 @@ Use `setAutoStart()` in your builder before calling render() function.
 {!! plupload('my_uploader_id', route('photos.store'))->setAutoStart(true) !!}
 ```
 
-
 ### Receiving files
-
 
 **file($name, $handler)**
 * **$name**: the input name.
@@ -152,13 +136,13 @@ return Plupload::file('file', function($file) {
     ];
 });
 ```
+
 Helper is also available
 ```php
 return plupload()->file('file', function($file) {
-
+    // Handle the file upload
 });
 ```
-
 
 If you are using the package `upload.js` file. The `url` and `deleteUrl` in the JSON payload will be used to generate preview and delete link while the `id` will be appended to the uploader as a hidden field with the following format:
 
